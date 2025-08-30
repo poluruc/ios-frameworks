@@ -1,0 +1,172 @@
+# iOS Frameworks Repository .gitignore
+
+# =============================================================================
+# MacOS System Files
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+
+# =============================================================================
+# Xcode & iOS Development (Only what's relevant for framework repo)
+# =============================================================================
+
+# Xcode user-specific files (but keep frameworks themselves)
+*.xcodeproj/project.xcworkspace/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Build artifacts from framework testing (not the frameworks themselves)
+build/
+DerivedData/
+
+# CocoaPods (if used for testing/verification)
+Pods/
+Podfile.lock
+
+# Carthage (if used for testing/verification)
+Carthage/Build/
+Carthage/Checkouts/
+
+# Swift Package Manager (if used for testing/verification)
+.swiftpm/
+Package.resolved
+
+# Xcode Playground files
+*.playground
+
+# =============================================================================
+# Framework Repository Specific
+# =============================================================================
+
+# Temporary extraction directories
+temp/
+tmp/
+extract/
+
+# Archive files
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Build logs and documentation
+*.log
+docs/build/
+
+# Framework verification test projects
+TestProject/
+VerificationApp/
+test-app/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-*
+*.vim
+
+# =============================================================================
+# Git and Version Control
+# =============================================================================
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Patch files
+*.patch
+*.diff
+
+# =============================================================================
+# Documentation Build Artifacts
+# =============================================================================
+
+# Documentation generators
+docs/_build/
+docs/.doctrees/
+site/
+
+# =============================================================================
+# CI/CD and Automation
+# =============================================================================
+
+# CI artifacts (keep CI configuration files)
+.github/workflows/artifacts/
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Environment files (if any scripts use them)
+.env
+.env.local
+.env.production
+
+# =============================================================================
+# Notes and Planning
+# =============================================================================
+
+# Personal notes (keep official documentation)
+NOTES.md
+TODO.md
+SCRATCH.md
+*.notes
+
+# Planning and temporary files
+planning/
+scratch/
+
+# =============================================================================
+# IMPORTANT: What NOT to ignore (frameworks should be tracked)
+# =============================================================================
+
+# DO NOT ignore the actual framework files - these are the core content!
+# *.xcframework     <- Commented out - we WANT to track these
+# *.framework       <- Commented out - we WANT to track these
+# *.a               <- Commented out - we WANT to track these
+# *.dylib           <- Commented out - we WANT to track these
+
+# DO NOT ignore essential repository files
+# !README.md
+# !LICENSE
+# !CHANGELOG.md
+# !.github/
+# !.gitattributes
+
+# =============================================================================
+# Security and Credentials
+# =============================================================================
+
+# Never commit credentials or API keys
+*.key
+*.pem
+secrets.json
+credentials.json
+auth.json
+
+# Certificate files (unless needed for distribution)
+*.p12
+*.mobileprovision
+
+# =============================================================================
+# Large Files Warning (Consider Git LFS)
+# =============================================================================
+
+# Files larger than 100MB should use Git LFS
+# These patterns are here as reminders - the actual files should be tracked
+# but may need Git LFS configuration
+
+# Large framework binaries (>100MB) - consider Git LFS
+# Very large .xcframework bundles may need LFS
+
+# Archive files that might be temporarily added
+*.dmg
+*.pkg
+*.deb
+*.rpm
