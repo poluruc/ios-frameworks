@@ -25,6 +25,7 @@ Thumbs.db
 # Build artifacts from framework testing (not the frameworks themselves)
 build/
 DerivedData/
+.build/
 
 # CocoaPods (if used for testing/verification)
 Pods/
