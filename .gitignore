@@ -51,7 +51,7 @@ tmp/
 extract/
 
 # Archive files
-*.zip
+# *.zip
 *.tar.gz
 *.tar.bz2
 
