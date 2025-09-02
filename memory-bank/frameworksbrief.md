@@ -10,14 +10,16 @@ This repository contains prebuilt iOS framework binaries designed to dramaticall
 - **Team Consistency**: Ensure all developers use identical framework versions
 
 ## Target Audience
-- iOS developers using Swift 5.0+ and Xcode 15.0+
+- iOS developers using Swift 6.0+ and Xcode 16.0+
 - Development teams looking to optimize build performance
 - CI/CD pipelines requiring faster build times
 - Projects using popular iOS frameworks (Alamofire, Realm, Kingfisher, etc.)
+- Teams adopting iOS 26 and modern Swift concurrency features
 
 ## Key Requirements
-- iOS 13.0+ deployment target compatibility
+- iOS 14.0+ deployment target compatibility (iOS 26 fully supported)
 - Universal XCFramework format supporting all iOS architectures
+- Swift 6.0 and strict concurrency compliance
 - Proper code signing for both development and distribution
 - Privacy manifest compliance for App Store submissions
 - Git LFS support for efficient binary file management

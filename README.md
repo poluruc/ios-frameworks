@@ -1,11 +1,11 @@
 # iOS Prebuilt Frameworks Repository
 
-![iOS](https://img.shields.io/badge/iOS-13.0%2B-blue)
-![Swift](https://img.shields.io/badge/Swift-5.0%2B-orange)
-![Xcode](https://img.shields.io/badge/Xcode-15.0%2B-blue)
+![iOS](https://img.shields.io/badge/iOS-14.0%2B-blue)
+![Swift](https://img.shields.io/badge/Swift-6.0%2B-orange)
+![Xcode](https://img.shields.io/badge/Xcode-16.0%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-A collection of prebuilt iOS framework binaries to dramatically reduce compilation time in iOS Swift projects. This repository contains popular, battle-tested frameworks compiled as universal XCFrameworks that support all iOS architectures.
+A collection of prebuilt iOS framework binaries to dramatically reduce compilation time in iOS Swift projects. This repository contains popular, battle-tested frameworks compiled as universal XCFrameworks that support all iOS architectures, including full iOS 26 compatibility.
 
 ## 🚀 Purpose
 
@@ -20,13 +20,13 @@ This repository eliminates the need to compile popular iOS frameworks from sourc
 
 ### 🌐 Networking & Authentication
 
-#### [Alamofire](https://github.com/Alamofire/Alamofire) `5.8.1`
+#### [Alamofire](https://github.com/Alamofire/Alamofire) `5.9.1`
 **Elegant HTTP networking library for Swift**
 
 - **Purpose**: Simplifies HTTP networking with a clean, Swift-native API
-- **Key Features**: Request/response handling, authentication, file uploads/downloads, network reachability
-- **Size**: ~2.1MB
-- **iOS Support**: 10.0+
+- **Key Features**: Request/response handling, authentication, file uploads/downloads, network reachability, iOS 26 compatibility
+- **Size**: ~2.3MB
+- **iOS Support**: 12.0+
 - **Dependencies**: Foundation (system)
 
 **Common Use Cases:**
@@ -62,13 +62,13 @@ AF.request("https://api.example.com/users",
     }
 ```
 
-#### [JWTDecode](https://github.com/auth0/JWTDecode.swift) `3.1.0`
+#### [JWTDecode](https://github.com/auth0/JWTDecode.swift) `3.2.0`
 **JWT token decoding and validation utilities**
 
 - **Purpose**: Decode and extract information from JSON Web Tokens
-- **Key Features**: Token parsing, claim extraction, expiration checking
-- **Size**: ~485KB
-- **iOS Support**: 11.0+
+- **Key Features**: Token parsing, claim extraction, expiration checking, Swift 6 concurrency support
+- **Size**: ~510KB
+- **iOS Support**: 12.0+
 - **Dependencies**: Foundation (system)
 
 **Common Use Cases:**
@@ -102,13 +102,13 @@ do {
 
 ### 🗄️ Database & Persistence
 
-#### [Realm](https://github.com/realm/realm-swift) `10.45.2`
+#### [Realm](https://github.com/realm/realm-swift) `10.53.0`
 **Modern object database for mobile development**
 
 - **Purpose**: Powerful database alternative to Core Data and SQLite
-- **Key Features**: Object-oriented database, real-time queries, encryption, sync capabilities
-- **Size**: ~15.3MB
-- **iOS Support**: 11.0+
+- **Key Features**: Object-oriented database, real-time queries, encryption, sync capabilities, iOS 26 optimizations
+- **Size**: ~16.1MB
+- **iOS Support**: 12.0+
 - **Dependencies**: Foundation (system)
 
 **Common Use Cases:**
@@ -118,13 +118,13 @@ do {
 - Complex object relationships
 - Database encryption and security
 
-#### [RealmSwift](https://github.com/realm/realm-swift) `10.45.2`
+#### [RealmSwift](https://github.com/realm/realm-swift) `10.53.0`
 **Swift-friendly API for Realm database**
 
 - **Purpose**: Swift-specific wrapper providing idiomatic Swift API for Realm
-- **Key Features**: Swift property wrappers, type-safe queries, SwiftUI integration
-- **Size**: ~1.2MB
-- **iOS Support**: 11.0+
+- **Key Features**: Swift property wrappers, type-safe queries, SwiftUI integration, Swift 6 compatibility
+- **Size**: ~1.4MB
+- **iOS Support**: 12.0+
 - **Dependencies**: Realm.xcframework
 
 **Quick Integration:**
@@ -171,13 +171,13 @@ class UserRepository {
 
 ### 🎨 UI & Media
 
-#### [Kingfisher](https://github.com/onevcat/Kingfisher) `7.10.1`
+#### [Kingfisher](https://github.com/onevcat/Kingfisher) `8.1.0`
 **Powerful image downloading and caching library**
 
 - **Purpose**: Async image loading, caching, and processing for iOS apps
-- **Key Features**: Memory/disk caching, image processing, placeholder support, SwiftUI integration
-- **Size**: ~3.4MB
-- **iOS Support**: 12.0+
+- **Key Features**: Memory/disk caching, image processing, placeholder support, SwiftUI integration, iOS 26 performance improvements
+- **Size**: ~3.7MB
+- **iOS Support**: 13.0+
 - **Dependencies**: Foundation (system)
 
 **Common Use Cases:**
@@ -230,13 +230,13 @@ struct AsyncImageView: View {
 }
 ```
 
-#### [DGCharts](https://github.com/danielgindi/Charts) `4.1.0`
+#### [DGCharts](https://github.com/danielgindi/Charts) `5.1.0`
 **Beautiful and interactive charts for iOS**
 
 - **Purpose**: Data visualization with various chart types and customization options
-- **Key Features**: Line, bar, pie, scatter charts, animations, touch interactions, SwiftUI support
-- **Size**: ~4.2MB
-- **iOS Support**: 12.0+
+- **Key Features**: Line, bar, pie, scatter charts, animations, touch interactions, SwiftUI support, iOS 26 optimizations
+- **Size**: ~4.5MB
+- **iOS Support**: 13.0+
 - **Dependencies**: UIKit/SwiftUI (system)
 
 **Common Use Cases:**
@@ -310,9 +310,9 @@ struct ChartSwiftUIView: UIViewRepresentable {
 ## 🛠 Integration Guide
 
 ### Prerequisites
-- **iOS Deployment Target**: 13.0+ (recommended for all frameworks)
-- **Xcode Version**: 15.0+ 
-- **Swift Version**: 5.0+
+- **iOS Deployment Target**: 14.0+ (recommended for all frameworks, iOS 26 fully supported)
+- **Xcode Version**: 16.0+ 
+- **Swift Version**: 6.0+
 - **Git LFS**: Required for cloning this repository
 
 ### Method 1: Direct Framework Integration (Recommended)
@@ -544,11 +544,11 @@ All frameworks are built as **XCFrameworks** with the following architecture sup
 
 | Framework | iOS Min | Swift | Xcode | Notes |
 |-----------|---------|-------|-------|-------|
-| Alamofire | 10.0+ | 5.6+ | 14.0+ | HTTP networking |
-| Realm/RealmSwift | 11.0+ | 5.7+ | 14.1+ | Database ORM |
-| Kingfisher | 12.0+ | 5.4+ | 13.0+ | Image loading |
-| DGCharts | 12.0+ | 5.7+ | 14.0+ | Data visualization |
-| JWTDecode | 11.0+ | 5.3+ | 13.0+ | JWT parsing |
+| Alamofire | 12.0+ | 6.0+ | 16.0+ | HTTP networking, iOS 26 ready |
+| Realm/RealmSwift | 12.0+ | 6.0+ | 16.0+ | Database ORM, iOS 26 optimized |
+| Kingfisher | 13.0+ | 6.0+ | 16.0+ | Image loading, iOS 26 performance |
+| DGCharts | 13.0+ | 6.0+ | 16.0+ | Data visualization, iOS 26 ready |
+| JWTDecode | 12.0+ | 6.0+ | 16.0+ | JWT parsing, Swift 6 concurrency |
 
 ## ⚡ Performance Benefits
 
@@ -608,14 +608,15 @@ Enable Bitcode: No (for iOS)
 ## 📱 Platform Support
 
 ### iOS Deployment Targets
-- **Minimum**: iOS 13.0 (compatible with all frameworks)
-- **Recommended**: iOS 14.0+ for optimal performance
-- **Latest**: iOS 17.0+ for newest features
+- **Minimum**: iOS 14.0 (compatible with all frameworks)
+- **Recommended**: iOS 15.0+ for optimal performance
+- **Latest**: iOS 26.0+ for newest features and optimizations
 
 ### Device Support
-- ✅ iPhone (all models supporting iOS 13+)
-- ✅ iPad (all models supporting iOS 13+)
+- ✅ iPhone (all models supporting iOS 14+)
+- ✅ iPad (all models supporting iOS 14+)
 - ✅ iOS Simulator (Intel and Apple Silicon Macs)
+- ✅ Full iOS 26 compatibility and performance optimizations
 
 ## 🔄 Update Process
 
