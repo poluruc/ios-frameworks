@@ -151,8 +151,8 @@ done
 
 cd "$OUTPUT_DIR"
 rm -rf Realm.xcframework RealmSwift.xcframework
-cp -R "$TEMP_DIR/realm-swift/build/ios/Realm.xcframework" .
-cp -R "$TEMP_DIR/realm-swift/build/ios/RealmSwift.xcframework" .
+cp -R "$TEMP_DIR/realm-swift/build/Release/ios/Realm.xcframework" .
+cp -R "$TEMP_DIR/realm-swift/build/Release/ios/RealmSwift.xcframework" .
 
 rm -f Realm.xcframework.zip RealmSwift.xcframework.zip
 ditto -c -k --sequesterRsrc --keepParent Realm.xcframework Realm.xcframework.zip

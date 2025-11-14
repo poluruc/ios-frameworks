@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "ios-frameworks",
     platforms: [
-        .iOS(.v14)
+        .iOS(.v16)
     ],
     products: [
         .library(name: "Alamofire", targets: ["Alamofire"]),
@@ -23,27 +23,27 @@ let package = Package(
         .binaryTarget(
             name: "JWTDecode",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/JWTDecode.xcframework.zip",
-            checksum: "9ebcd8425033b52249318b815bf4ee2117603025fd4d3b45e8975c43ea51edec"
+            checksum: "b5c9c93e5d3d24dcf66de0c5b866dacf85ae71c6805ce3552e498d4ba10c3c14"
         ),
         .binaryTarget(
             name: "Kingfisher",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/Kingfisher.xcframework.zip",
-            checksum: "932253aeb53bbee81ad336d0397a509368d4f01d68896da22b5420860d592e4b"
+            checksum: "e02d55e255e98f0db317092cfeec5f5411f89c0880ac18ff1a0a8e47f5eddb16"
         ),
         .binaryTarget(
             name: "Realm",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/Realm.xcframework.zip",
-            checksum: "28900311f75395dcd07187b615a3d63d56961f61ce7a81a52ebfd903d23e63bc"
+            checksum: "9ada4b2316d0984cb1f11503a5398e8938a28ba46d8c1ec67971df57d5a5544c"
         ),
         .binaryTarget(
             name: "RealmSwift",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/RealmSwift.xcframework.zip",
-            checksum: "4b2a0b0031573b1820597abf2a564a4b52bcd3e8ca01c4fb4bac24bc80fca9f2"
+            checksum: "ce68cca4fe38c6fd965f7e4e311d71b47f03af3e4c7a21fbe8646ffcefd5a9c1"
         ),
         .binaryTarget(
             name: "DGCharts",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/DGCharts.xcframework.zip",
-            checksum: "864faa8e47e5e9e40ee9cb40d2e0b3d3593a78e6211257673c4e3cf1731ba275"
+            checksum: "112cb76b989a6ccf79f1b35004fa2637735d930fd0cd8d3eb60aec0fc1edbbdd"
         )
     ]
 )

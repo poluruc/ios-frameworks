@@ -306,8 +306,8 @@ SWIFT_VERSION_${XCODE_VERSION_MAJOR} = 6.0;\\
     # Copy built frameworks to output directory
     print_status "Copying Realm frameworks..."
     
-    cp -R build/ios/Realm.xcframework "$OUTPUT_DIR/"
-    cp -R build/ios/RealmSwift.xcframework "$OUTPUT_DIR/"
+    cp -R build/Release/ios/Realm.xcframework "$OUTPUT_DIR/"
+    cp -R build/Release/ios/RealmSwift.xcframework "$OUTPUT_DIR/"
     
     print_success "Realm frameworks copied"
     
