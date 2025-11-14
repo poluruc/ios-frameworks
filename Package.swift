@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "JWTDecode", targets: ["JWTDecode"]),
         .library(name: "Kingfisher", targets: ["Kingfisher"]),
         .library(name: "Realm", targets: ["Realm"]),
-        .library(name: "RealmSwift", targets: ["RealmSwiftWrapper"]),
+        .library(name: "RealmSwift", targets: ["RealmSwift", "Realm"]),
         .library(name: "DGCharts", targets: ["DGCharts"])
     ],
     targets: [
@@ -39,11 +39,6 @@ let package = Package(
             name: "RealmSwift",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/RealmSwift.xcframework.zip",
             checksum: "4b2a0b0031573b1820597abf2a564a4b52bcd3e8ca01c4fb4bac24bc80fca9f2"
-        ),
-        .target(
-            name: "RealmSwiftWrapper",
-            dependencies: ["Realm", "RealmSwift"],
-            path: "Sources/RealmSwiftWrapper"
         ),
         .binaryTarget(
             name: "DGCharts",
