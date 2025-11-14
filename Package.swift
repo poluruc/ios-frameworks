@@ -33,12 +33,12 @@ let package = Package(
         .binaryTarget(
             name: "Realm",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/Realm.xcframework.zip",
-            checksum: "9ada4b2316d0984cb1f11503a5398e8938a28ba46d8c1ec67971df57d5a5544c"
+            checksum: "1110df910a6e9ac1a1467c6044e6d49578839b06fe65b75a09e8f0ffd56ce2b7"
         ),
         .binaryTarget(
             name: "RealmSwift",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/RealmSwift.xcframework.zip",
-            checksum: "ce68cca4fe38c6fd965f7e4e311d71b47f03af3e4c7a21fbe8646ffcefd5a9c1"
+            checksum: "37ea273db865ff4c9e37e0fbe557e44f49191bcdc21ede1203b8c5808620c355"
         ),
         .binaryTarget(
             name: "DGCharts",
