@@ -8,7 +8,7 @@ set -e  # Exit on any error
 # Configuration
 XCODE_VERSION="16.1"
 SDK_VERSION="26.1.1"
-IOS_DEPLOYMENT_TARGET="14.0"
+IOS_DEPLOYMENT_TARGET="16.0"
 BUILD_DIR="$(pwd)/build"
 OUTPUT_DIR="$(pwd)"
 TEMP_DIR="$BUILD_DIR/temp"
@@ -250,34 +250,42 @@ build_realm() {
     
     print_success "Repository cloned"
     
-    # Get Xcode version for SWIFT_VERSION configuration
+    # Get Xcode version for SWIFT_VERSION and deployment target configuration
     local XCODE_VERSION_MAJOR=$(xcodebuild -version | head -n 1 | awk '{print $2}' | sed 's/\.//' | cut -c1-4)
     print_status "Detected Xcode version major: $XCODE_VERSION_MAJOR"
     
-    # Configure SWIFT_VERSION in Realm's Base.xcconfig
-    print_status "Configuring SWIFT_VERSION for Realm build..."
+    # Configure SWIFT_VERSION and IPHONEOS_DEPLOYMENT_TARGET in Realm's Base.xcconfig
+    print_status "Configuring build settings for Realm..."
     local CONFIG_FILE="Configuration/Base.xcconfig"
     
-    # Check if SWIFT_VERSION_${XCODE_VERSION_MAJOR} already exists
-    if grep -q "SWIFT_VERSION_${XCODE_VERSION_MAJOR}" "$CONFIG_FILE"; then
-        print_status "SWIFT_VERSION_${XCODE_VERSION_MAJOR} already configured"
-    else
-        # Add SWIFT_VERSION for current Xcode version
+    # Add IPHONEOS_DEPLOYMENT_TARGET for current Xcode version if not present
+    if ! grep -q "IPHONEOS_DEPLOYMENT_TARGET_${XCODE_VERSION_MAJOR}" "$CONFIG_FILE"; then
+        print_status "Adding IPHONEOS_DEPLOYMENT_TARGET_${XCODE_VERSION_MAJOR} = $IOS_DEPLOYMENT_TARGET to $CONFIG_FILE"
+        # Insert after IPHONEOS_DEPLOYMENT_TARGET_1600 line
+        sed -i.bak "/^IPHONEOS_DEPLOYMENT_TARGET_1600/a\\
+IPHONEOS_DEPLOYMENT_TARGET_${XCODE_VERSION_MAJOR} = $IOS_DEPLOYMENT_TARGET;\\
+" "$CONFIG_FILE"
+    fi
+    
+    # Add SWIFT_VERSION for current Xcode version if not present
+    if ! grep -q "SWIFT_VERSION_${XCODE_VERSION_MAJOR}" "$CONFIG_FILE"; then
         print_status "Adding SWIFT_VERSION_${XCODE_VERSION_MAJOR} = 6.0 to $CONFIG_FILE"
-        # Insert before the final SWIFT_VERSION line
-        sed -i.bak "/^SWIFT_VERSION =/i\\
+        # Insert after SWIFT_VERSION_1600 line
+        sed -i.bak2 "/^SWIFT_VERSION_1600/a\\
 SWIFT_VERSION_${XCODE_VERSION_MAJOR} = 6.0;\\
 " "$CONFIG_FILE"
     fi
     
-    # Ensure SWIFT_VERSION is set to 6.0
-    if grep -q "^SWIFT_VERSION = " "$CONFIG_FILE"; then
-        sed -i.bak2 "s/^SWIFT_VERSION = .*/SWIFT_VERSION = 6.0;/" "$CONFIG_FILE"
-    else
+    # Change SWIFT_VERSION_1600 from 5.7 to 6.0
+    sed -i.bak3 "s/^SWIFT_VERSION_1600 = 5.7;/SWIFT_VERSION_1600 = 6.0;/" "$CONFIG_FILE"
+    
+    # Add fallback SWIFT_VERSION if not present
+    if ! grep -q "^SWIFT_VERSION = " "$CONFIG_FILE"; then
         echo "SWIFT_VERSION = 6.0;" >> "$CONFIG_FILE"
+        print_status "Added fallback SWIFT_VERSION = 6.0"
     fi
     
-    print_success "SWIFT_VERSION configured for Xcode $XCODE_VERSION_MAJOR"
+    print_success "Build settings configured for Xcode $XCODE_VERSION_MAJOR (iOS $IOS_DEPLOYMENT_TARGET, Swift 6.0)"
     
     # Realm uses its own build system
     print_status "Building Realm using build.sh..."

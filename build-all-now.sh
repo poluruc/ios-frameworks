@@ -119,28 +119,27 @@ rm -rf realm-swift
 git clone --branch v10.54.0 --depth 1 https://github.com/realm/realm-swift.git
 cd realm-swift
 
-# Get Xcode version for SWIFT_VERSION configuration
-XCODE_VERSION_MAJOR=$(xcodebuild -version | head -n 1 | awk '{print $2}' | sed 's/\.//' | cut -c1-4)
-echo "Configuring SWIFT_VERSION for Xcode $XCODE_VERSION_MAJOR..."
+# Get Xcode version for configuration
+XCODE_VERSION_MAJOR=$(xcodebuild -version | head -n 1 | awk '{print $2}' | sed 's/\.//g' | cut -c1-4)
+echo "Configuring Realm for Xcode $XCODE_VERSION_MAJOR (iOS 16.0, Swift 6.0)..."
 
-# Configure SWIFT_VERSION in Realm's Base.xcconfig
 CONFIG_FILE="Configuration/Base.xcconfig"
 
-# Add SWIFT_VERSION for current Xcode version if not present
+# Add version-specific SWIFT_VERSION if not present
 if ! grep -q "SWIFT_VERSION_${XCODE_VERSION_MAJOR}" "$CONFIG_FILE"; then
-    sed -i.bak "/^SWIFT_VERSION =/i\\
-SWIFT_VERSION_${XCODE_VERSION_MAJOR} = 6.0;\\
+    sed -i.bak1 "/^SWIFT_VERSION_1600/a\\
+SWIFT_VERSION_${XCODE_VERSION_MAJOR} = 6.0;
 " "$CONFIG_FILE"
 fi
 
-# Ensure SWIFT_VERSION is set to 6.0
-if grep -q "^SWIFT_VERSION = " "$CONFIG_FILE"; then
-    sed -i.bak2 "s/^SWIFT_VERSION = .*/SWIFT_VERSION = 6.0;/" "$CONFIG_FILE"
-else
-    echo "SWIFT_VERSION = 6.0;" >> "$CONFIG_FILE"
+# Add version-specific IPHONEOS_DEPLOYMENT_TARGET if not present
+if ! grep -q "IPHONEOS_DEPLOYMENT_TARGET_${XCODE_VERSION_MAJOR}" "$CONFIG_FILE"; then
+    sed -i.bak2 "/^IPHONEOS_DEPLOYMENT_TARGET_1600/a\\
+IPHONEOS_DEPLOYMENT_TARGET_${XCODE_VERSION_MAJOR} = 16.0;
+" "$CONFIG_FILE"
 fi
 
-./build.sh xcframework > /dev/null 2>&1
+# Add fallback SWIFT_VERSION\nif ! grep -q \"^SWIFT_VERSION = \" \"$CONFIG_FILE\"; then\n    echo \"SWIFT_VERSION = 6.0;\" >> \"$CONFIG_FILE\"\nfi\n\n# Change SWIFT_VERSION_1600 from 5.7 to 6.0\nsed -i.bak3 \"s/^SWIFT_VERSION_1600 = 5.7;/SWIFT_VERSION_1600 = 6.0;/\" \"$CONFIG_FILE\"\n\n./build.sh xcframework > /dev/null 2>&1
 
 cd "$OUTPUT_DIR"
 rm -rf Realm.xcframework RealmSwift.xcframework
