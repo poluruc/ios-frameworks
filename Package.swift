@@ -23,7 +23,7 @@ let package = Package(
         .binaryTarget(
             name: "JWTDecode",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/JWTDecode.xcframework.zip",
-            checksum: "b5c9c93e5d3d24dcf66de0c5b866dacf85ae71c6805ce3552e498d4ba10c3c14"
+            checksum: "dcb007bcdb2ee9a0ea49fa5199d517dd9261a4c23049abeec8badf5eff38d844"
         ),
         .binaryTarget(
             name: "Kingfisher",
