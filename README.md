@@ -2,10 +2,11 @@
 
 ![iOS](https://img.shields.io/badge/iOS-14.0%2B-blue)
 ![Swift](https://img.shields.io/badge/Swift-6.0%2B-orange)
-![Xcode](https://img.shields.io/badge/Xcode-16.0%2B-blue)
+![Xcode](https://img.shields.io/badge/Xcode-16.1%2B-blue)
+![SDK](https://img.shields.io/badge/SDK-26.1.1-green)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-A collection of prebuilt iOS framework binaries to dramatically reduce compilation time in iOS Swift projects. This repository contains popular, battle-tested frameworks compiled as universal XCFrameworks that support all iOS architectures, including full iOS 26 compatibility.
+A collection of prebuilt iOS framework binaries to dramatically reduce compilation time in iOS Swift projects. This repository contains popular, battle-tested frameworks compiled as universal XCFrameworks that support all iOS architectures. **Built with Xcode 16.1 and iOS SDK 26.1.1** for maximum compatibility and performance.
 
 ## 🚀 Purpose
 
@@ -310,10 +311,11 @@ struct ChartSwiftUIView: UIViewRepresentable {
 ## 🛠 Integration Guide
 
 ### Prerequisites
-- **iOS Deployment Target**: 14.0+ (recommended for all frameworks, iOS 26 fully supported)
-- **Xcode Version**: 16.0+ 
+- **iOS Deployment Target**: 14.0+ (recommended for all frameworks)
+- **Xcode Version**: 16.1+ (SDK 26.1.1)
 - **Swift Version**: 6.0+
 - **Git LFS**: Required for cloning this repository
+- **SDK**: iOS 26.1.1 or later for optimal compatibility
 
 ### Method 1: Direct Framework Integration (Recommended)
 
@@ -542,13 +544,13 @@ All frameworks are built as **XCFrameworks** with the following architecture sup
 
 ### Compatibility Matrix
 
-| Framework | iOS Min | Swift | Xcode | Notes |
-|-----------|---------|-------|-------|-------|
-| Alamofire | 12.0+ | 6.0+ | 16.0+ | HTTP networking, iOS 26 ready |
-| Realm/RealmSwift | 12.0+ | 6.0+ | 16.0+ | Database ORM, iOS 26 optimized |
-| Kingfisher | 13.0+ | 6.0+ | 16.0+ | Image loading, iOS 26 performance |
-| DGCharts | 13.0+ | 6.0+ | 16.0+ | Data visualization, iOS 26 ready |
-| JWTDecode | 12.0+ | 6.0+ | 16.0+ | JWT parsing, Swift 6 concurrency |
+| Framework | iOS Min | Swift | Xcode | SDK | Notes |
+|-----------|---------|-------|-------|-----|-------|
+| Alamofire | 12.0+ | 6.0+ | 16.1+ | 26.1.1 | HTTP networking, latest SDK |
+| Realm/RealmSwift | 12.0+ | 6.0+ | 16.1+ | 26.1.1 | Database ORM, SDK 26.1.1 |
+| Kingfisher | 13.0+ | 6.0+ | 16.1+ | 26.1.1 | Image loading, SDK 26.1.1 |
+| DGCharts | 13.0+ | 6.0+ | 16.1+ | 26.1.1 | Data visualization, SDK 26.1.1 |
+| JWTDecode | 12.0+ | 6.0+ | 16.1+ | 26.1.1 | JWT parsing, Swift 6 concurrency |
 
 ## ⚡ Performance Benefits
 
@@ -610,22 +612,111 @@ Enable Bitcode: No (for iOS)
 ### iOS Deployment Targets
 - **Minimum**: iOS 14.0 (compatible with all frameworks)
 - **Recommended**: iOS 15.0+ for optimal performance
-- **Latest**: iOS 26.0+ for newest features and optimizations
+- **Latest**: iOS 26.1.1 (built with latest SDK)
 
 ### Device Support
 - ✅ iPhone (all models supporting iOS 14+)
 - ✅ iPad (all models supporting iOS 14+)
 - ✅ iOS Simulator (Intel and Apple Silicon Macs)
-- ✅ Full iOS 26 compatibility and performance optimizations
+- ✅ **Built with iOS SDK 26.1.1** for latest features and optimizations
+- ✅ Full backward compatibility with iOS 14+
+
+## 🔨 Building Frameworks from Source
+
+### Using the Build Script
+
+This repository includes a comprehensive build script that compiles all frameworks with SDK 26.1.1:
+
+```bash
+# Make script executable (first time only)
+chmod +x build-frameworks.sh
+
+# Run the build script
+./build-frameworks.sh
+```
+
+The script will:
+1. **Clone** source repositories for each framework
+2. **Compile** frameworks for both device and simulator
+3. **Create** XCFrameworks with proper architecture support
+4. **Package** frameworks as ZIP files
+5. **Generate** checksums for Package.swift
+6. **Update** Package.swift with new checksums
+7. **Auto-configure** Realm's SWIFT_VERSION for the current Xcode version
+
+**Realm SWIFT_VERSION Handling:**
+The build scripts automatically configure Realm for any Xcode version by:
+- Detecting Xcode version (e.g., 16.1 → `1610`, 26.1.1 → `2610`)
+- Adding `SWIFT_VERSION_${VERSION} = 6.0;` to `Configuration/Base.xcconfig`
+- Setting fallback `SWIFT_VERSION = 6.0;` for compatibility
+
+This ensures Realm builds successfully without manual intervention.
+
+### Manual Framework Building
+
+If you prefer to build individual frameworks:
+
+```bash
+# Example: Building Alamofire manually
+git clone --branch 5.9.1 https://github.com/Alamofire/Alamofire.git
+cd Alamofire
+
+# Build for iOS device
+xcodebuild archive \
+  -scheme Alamofire \
+  -destination "generic/platform=iOS" \
+  -archivePath build/ios.xcarchive \
+  SKIP_INSTALL=NO \
+  BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+  IPHONEOS_DEPLOYMENT_TARGET=14.0
+
+# Build for iOS Simulator
+xcodebuild archive \
+  -scheme Alamofire \
+  -destination "generic/platform=iOS Simulator" \
+  -archivePath build/ios-simulator.xcarchive \
+  SKIP_INSTALL=NO \
+  BUILD_LIBRARY_FOR_DISTRIBUTION=YES \
+  IPHONEOS_DEPLOYMENT_TARGET=14.0
+
+# Create XCFramework
+xcodebuild -create-xcframework \
+  -framework build/ios.xcarchive/Products/Library/Frameworks/Alamofire.framework \
+  -framework build/ios-simulator.xcarchive/Products/Library/Frameworks/Alamofire.framework \
+  -output Alamofire.xcframework
+
+# Create ZIP and calculate checksum
+zip -r Alamofire.xcframework.zip Alamofire.xcframework
+swift package compute-checksum Alamofire.xcframework.zip
+```
+
+### Build Requirements
+
+- **Xcode 16.1+** with iOS SDK 26.1.1
+- **macOS 14.0+** (Sonoma or later)
+- **Command Line Tools** installed
+- **Git** and **Git LFS**
+- **xcpretty** (optional, for cleaner build output): `gem install xcpretty`
+
+### Framework Versions
+
+The build script compiles these specific versions:
+- **Alamofire**: 5.9.1
+- **Realm**: 10.54.0
+- **Kingfisher**: 8.1.1
+- **DGCharts**: 5.1.0
+- **JWTDecode**: 3.2.0
 
 ## 🔄 Update Process
 
 ### Updating Frameworks
 
-1. **Check for updates** in this repository
-2. **Download new versions** and replace old frameworks
-3. **Clean build folder** in Xcode (`Cmd+Shift+K`)
-4. **Rebuild project** to ensure compatibility
+1. **Rebuild frameworks** using `./build-frameworks.sh`
+2. **Replace old frameworks** with newly built versions
+3. **Update checksums** in Package.swift (done automatically by script)
+4. **Test thoroughly** in your projects
+5. **Clean build folder** in Xcode (`Cmd+Shift+K`)
+6. **Commit and push** updated frameworks
 
 ### Version Management
 
@@ -634,6 +725,7 @@ We maintain compatibility testing between framework versions. When updating:
 - Read the **CHANGELOG.md** for breaking changes
 - Test your app thoroughly with new framework versions
 - Consider updating dependencies gradually
+- Verify SDK compatibility with your deployment targets
 
 ## 🤝 Contributing
 

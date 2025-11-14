@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f21207e7510f4c53cc8cacbd6c651edac51af9dcc2689360d54d743614be4e78
-size 76
+framework module JWTDecode {
+  header "JWTDecode-Swift.h"
+  requires objc
+}

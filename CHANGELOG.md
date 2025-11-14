@@ -7,10 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### In Progress
+- Building all frameworks with iOS SDK 26.1.1 (Xcode 16.1)
+- Updated build tooling and automation scripts
+- Enhanced framework compilation process
+
 ### Planned
 - Automated framework update workflows
 - Integration testing scripts
 - Expanded troubleshooting documentation
+
+## [2.1.0] - 2025-11-14
+
+### 🔨 SDK 26.1.1 Rebuild
+
+#### Build Environment
+- **SDK Version**: iOS 26.1.1
+- **Xcode Version**: 16.1
+- **Swift Version**: 6.0+
+- **Deployment Target**: iOS 14.0+
+
+#### New Features
+- ✅ **Complete framework rebuild** with latest iOS SDK 26.1.1
+- ✅ **Automated build script** (`build-frameworks.sh`) for reproducible builds
+- ✅ **Enhanced packaging** with automatic checksum generation
+- ✅ **Updated Package.swift** with new framework checksums
+- ✅ **Full build automation** including cloning, compiling, and packaging
+
+#### Framework Versions (Recompiled)
+- **Alamofire 5.9.1** - Rebuilt with SDK 26.1.1
+- **Realm 10.54.0** (⬆️ from 10.53.0) - Latest version with SDK 26.1.1
+- **RealmSwift 10.54.0** (⬆️ from 10.53.0) - Latest version with SDK 26.1.1
+- **Kingfisher 8.1.1** (⬆️ from 8.1.0) - Latest patch with SDK 26.1.1
+- **DGCharts 5.1.0** - Rebuilt with SDK 26.1.1
+- **JWTDecode 3.2.0** - Rebuilt with SDK 26.1.1
+
+#### Build Tooling
+- Added comprehensive `build-frameworks.sh` script
+- Automatic framework compilation from source
+- XCFramework creation with proper architecture support
+- ZIP packaging with checksum calculation
+- Package.swift automatic updates
+
+#### Developer Experience
+- Simplified framework rebuilding process
+- One-command build for all frameworks
+- Detailed build progress and logging
+- Automatic cleanup and organization
+- Build verification and summary
 
 ## [2.0.0] - 2025-09-02
 

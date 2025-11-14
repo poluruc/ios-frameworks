@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c917100f3feea07a443a1dcdfce13d4d53d90922ed0e2b87c47ac642fa3bc371
-size 168
+framework module DGCharts {
+  umbrella header "DGCharts.h"
+  export *
+
+  module * { export * }
+}
+
+module DGCharts.Swift {
+  header "DGCharts-Swift.h"
+  requires objc
+}

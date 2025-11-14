@@ -1,3 +1,99 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:921ad9944803acde4bfbf826dece2bec00e7f64620395dbcf71407df8d6d1d6f
-size 3036
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target arm64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name JWTDecode
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum JWTDecodeError : Foundation.LocalizedError, Swift.CustomDebugStringConvertible {
+  case invalidBase64URL(Swift.String)
+  case invalidJSON(Swift.String)
+  case invalidPartCount(Swift.String, Swift.Int)
+  public var localizedDescription: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public func decode(jwt: Swift.String) throws -> any JWTDecode.JWT
+public struct Claim {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var rawValue: Any? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var string: Swift.String? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var boolean: Swift.Bool? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var double: Swift.Double? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var integer: Swift.Int? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var date: Foundation.Date? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var array: [Swift.String]? {
+    get
+  }
+  #endif
+}
+public protocol JWT {
+  var header: [Swift.String : Any] { get }
+  var body: [Swift.String : Any] { get }
+  #if compiler(>=5.3) && $NonescapableTypes
+  var signature: Swift.String? { get }
+  #endif
+  var string: Swift.String { get }
+  #if compiler(>=5.3) && $NonescapableTypes
+  var expiresAt: Foundation.Date? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var issuer: Swift.String? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var subject: Swift.String? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var audience: [Swift.String]? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var issuedAt: Foundation.Date? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var notBefore: Foundation.Date? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  var identifier: Swift.String? { get }
+  #endif
+  var expired: Swift.Bool { get }
+}
+extension JWTDecode.JWT {
+  public func claim(name: Swift.String) -> JWTDecode.Claim
+  public subscript(claim: Swift.String) -> JWTDecode.Claim {
+    get
+  }
+}

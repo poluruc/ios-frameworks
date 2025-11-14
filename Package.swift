@@ -18,32 +18,32 @@ let package = Package(
         .binaryTarget(
             name: "Alamofire",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/Alamofire.xcframework.zip",
-            checksum: "f1b28c3fc7f0e812f5d7b099fbc2007dfa698bd35858e490bc7d4faf98694fa9"
+            checksum: "58a9c3654ed503fedc238ed17df5d9e072cef3a4ee544d0f98eeee68b979f4ff"
         ),
         .binaryTarget(
             name: "JWTDecode",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/JWTDecode.xcframework.zip",
-            checksum: "8d2cc76327adbd777a1a79041d16b51bd0193cef3b8f77bb3f5d202234361c68"
+            checksum: "9ebcd8425033b52249318b815bf4ee2117603025fd4d3b45e8975c43ea51edec"
         ),
         .binaryTarget(
             name: "Kingfisher",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/Kingfisher.xcframework.zip",
-            checksum: "a1622497a3327a4726127f9976c36378e7b79c3d0cc2dd8c4f2836bb016cb4fc"
+            checksum: "932253aeb53bbee81ad336d0397a509368d4f01d68896da22b5420860d592e4b"
         ),
         .binaryTarget(
             name: "Realm",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/Realm.xcframework.zip",
-            checksum: "ef021fa9d65fca9829a3de73ca714fd0185b8c50dad413e967d3494b1a665b34"
+            checksum: "28900311f75395dcd07187b615a3d63d56961f61ce7a81a52ebfd903d23e63bc"
         ),
         .binaryTarget(
             name: "RealmSwift",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/RealmSwift.xcframework.zip",
-            checksum: "5a60f71644799f1fa14961d55872c07ce43a5344cd7195f0abde78d9ae90f09e"
+            checksum: "4b2a0b0031573b1820597abf2a564a4b52bcd3e8ca01c4fb4bac24bc80fca9f2"
         ),
         .binaryTarget(
             name: "DGCharts",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/DGCharts.xcframework.zip",
-            checksum: "de699c79f032bdf089131cee3d8b92cc9edcbde918d524a687380d056afdad71"
+            checksum: "864faa8e47e5e9e40ee9cb40d2e0b3d3593a78e6211257673c4e3cf1731ba275"
         )
     ]
 )
