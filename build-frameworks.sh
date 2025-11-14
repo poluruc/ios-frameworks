@@ -293,6 +293,16 @@ SWIFT_VERSION_${XCODE_VERSION_MAJOR} = 6.0;\\
     # Build Realm
     ./build.sh xcframework
     
+    # Fix MinimumOSVersion in built frameworks
+    print_status "Fixing MinimumOSVersion to $IOS_DEPLOYMENT_TARGET..."
+    for plist in build/Release/ios/Realm.xcframework/*/Realm.framework/Info.plist build/Release/ios/RealmSwift.xcframework/*/RealmSwift.framework/Info.plist; do
+        if [ -f "$plist" ]; then
+            /usr/libexec/PlistBuddy -c "Set :MinimumOSVersion $IOS_DEPLOYMENT_TARGET" "$plist" 2>/dev/null || 
+                /usr/libexec/PlistBuddy -c "Add :MinimumOSVersion string $IOS_DEPLOYMENT_TARGET" "$plist"
+        fi
+    done
+    print_success "MinimumOSVersion set to $IOS_DEPLOYMENT_TARGET"
+    
     # Copy built frameworks to output directory
     print_status "Copying Realm frameworks..."
     

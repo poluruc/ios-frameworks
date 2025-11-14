@@ -141,6 +141,14 @@ fi
 
 # Add fallback SWIFT_VERSION\nif ! grep -q \"^SWIFT_VERSION = \" \"$CONFIG_FILE\"; then\n    echo \"SWIFT_VERSION = 6.0;\" >> \"$CONFIG_FILE\"\nfi\n\n# Change SWIFT_VERSION_1600 from 5.7 to 6.0\nsed -i.bak3 \"s/^SWIFT_VERSION_1600 = 5.7;/SWIFT_VERSION_1600 = 6.0;/\" \"$CONFIG_FILE\"\n\n./build.sh xcframework > /dev/null 2>&1
 
+# Fix MinimumOSVersion in built frameworks
+for plist in build/Release/ios/Realm.xcframework/*/Realm.framework/Info.plist build/Release/ios/RealmSwift.xcframework/*/RealmSwift.framework/Info.plist; do
+    if [ -f "$plist" ]; then
+        /usr/libexec/PlistBuddy -c "Set :MinimumOSVersion 16.0" "$plist" 2>/dev/null || 
+            /usr/libexec/PlistBuddy -c "Add :MinimumOSVersion string 16.0" "$plist"
+    fi
+done
+
 cd "$OUTPUT_DIR"
 rm -rf Realm.xcframework RealmSwift.xcframework
 cp -R "$TEMP_DIR/realm-swift/build/ios/Realm.xcframework" .
