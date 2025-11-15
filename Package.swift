@@ -11,10 +11,14 @@ let package = Package(
         .library(name: "JWTDecode", targets: ["JWTDecode"]),
         .library(name: "Kingfisher", targets: ["Kingfisher"]),
         .library(name: "Realm", targets: ["Realm"]),
-        .library(name: "RealmSwift", targets: ["RealmSwift", "Realm"]),
+        .library(name: "RealmSwift", targets: ["RealmSwiftWrapper"]),
         .library(name: "DGCharts", targets: ["DGCharts"])
     ],
     targets: [
+        .target(
+            name: "RealmSwiftWrapper",
+            dependencies: ["Realm", "RealmSwift"]
+        ),
         .binaryTarget(
             name: "Alamofire",
             url: "https://github.com/poluruc/ios-frameworks/raw/refs/heads/main/Alamofire.xcframework.zip",
