@@ -1,3 +1,97 @@
+10.54.6 Release notes (2025-10-15)
+=============================================================
+
+Add Xcode 26.0.1 binaries and drop support for Xcode < 16.3.
+
+10.54.5 Release notes (2025-06-15)
+=============================================================
+
+### Enhancements
+
+* Add Xcode 16.4 binaries.
+* Add support for building with Xcode 26 beta 1.
+
+### Compatibility
+
+* Realm Studio: 15.0.0 or later.
+* APIs are backwards compatible with all previous releases in the 10.x.y series.
+* Carthage release for Swift is built with Xcode 16.4.0.
+* CocoaPods: 1.10 or later.
+* Xcode: 15.3.0-26 beta 1.
+
+10.54.4 Release notes (2025-04-09)
+=============================================================
+
+### Enhancements
+
+* Add Xcode 16.3 binaries.
+
+### Compatibility
+
+* Realm Studio: 15.0.0 or later.
+* APIs are backwards compatible with all previous releases in the 10.x.y series.
+* Carthage release for Swift is built with Xcode 16.3.0.
+* CocoaPods: 1.10 or later.
+* Xcode: 15.3.0-16.3.
+
+10.54.3 Release notes (2025-03-07)
+=============================================================
+
+### Enhancements
+
+* Enable automatic client reset handling for Events Realms. These Realms
+  typically do not trigger client resets, but may if sync is restarted when one
+  is partially uploaded. ([Core #8072](https://github.com/realm/realm-core/pull/8072)).
+
+### Compatibility
+
+* Realm Studio: 15.0.0 or later.
+* APIs are backwards compatible with all previous releases in the 10.x.y series.
+* Carthage release for Swift is built with Xcode 16.2.0.
+* CocoaPods: 1.10 or later.
+* Xcode: 15.3.0-16.2.
+
+### Internal
+
+* Upgraded realm-core from v14.13.1 to 14.14.0
+
+10.54.2 Release notes (2024-12-17)
+=============================================================
+
+### Enhancements
+
+* Add prebuilt binaries for Xcode 16.2.
+
+### Compatibility
+
+* Realm Studio: 15.0.0 or later.
+* APIs are backwards compatible with all previous releases in the 10.x.y series.
+* Carthage release for Swift is built with Xcode 16.2.0.
+* CocoaPods: 1.10 or later.
+* Xcode: 15.3.0-16.2.
+
+10.54.1 Release notes (2024-10-22)
+=============================================================
+
+### Fixed
+
+* The events library would attempt to upload backup files created as part of
+  file format upgrades, causing backup copies of those backups to be made,
+  looping until the maximum file name size was reached
+  ([Core #8040](https://github.com/realm/realm-core/issues/8040), since v10.26.0).
+
+### Compatibility
+
+* Realm Studio: 15.0.0 or later.
+* APIs are backwards compatible with all previous releases in the 10.x.y series.
+* Carthage release for Swift is built with Xcode 15.4.0.
+* CocoaPods: 1.10 or later.
+* Xcode: 15.3.0-16.1 beta.
+
+### Internal
+
+* Upgraded realm-core from v14.13.0 to 14.13.1
+
 10.54.0 Release notes (2024-09-20)
 =============================================================
 

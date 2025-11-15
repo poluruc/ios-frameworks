@@ -6,7 +6,7 @@
 	<dict>
 		<key>CHANGELOG.md</key>
 		<data>
-		nFtbMBR9B+wHwhXOJihy87DqWMQ=
+		65V0sMQU7HibVqX3Mk+9dqJ4CHo=
 		</data>
 		<key>Headers/NSError+RLMSync.h</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>Headers/RLMMigration.h</key>
 		<data>
-		ek93LcGxSB4AWXYxDtK7lSLIUZA=
+		YPVHpFWvJzh3Wy5ePFreC9pLiyU=
 		</data>
 		<key>Headers/RLMMongoClient.h</key>
 		<data>
@@ -222,7 +222,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		zr3Ve/51lKk+Drr1IWNKNoVclc8=
+		Atgjc7TwdIojbJ1SvS6ruVtC/yQ=
 		</data>
 		<key>LICENSE</key>
 		<data>
@@ -359,7 +359,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			46EX4Z72W1GMccLP+qK61M700xh2Sh0CEjvHILvWJ1c=
+			owABT8F81R/xBX0aI9pt0mht9Zls7NE9Zrc9qFUD5ek=
 			</data>
 		</dict>
 		<key>Headers/NSError+RLMSync.h</key>
@@ -506,7 +506,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/CXq+e7CtzaXdrGoLya2a56Zz6xWRH73N3RzyMcQrgs=
+			OhOl7t4qW/nCS22JyeNZsriBnx5P9gptWJqQPRxZtgE=
 			</data>
 		</dict>
 		<key>Headers/RLMMongoClient.h</key>
